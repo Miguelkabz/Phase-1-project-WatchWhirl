@@ -2,22 +2,29 @@
 /*  WATCHWHIRL - STYLE.CSS  */
 /* ======================= */
 
-/* ======= Light Mode Variables ======= */
+/* ======= Color Variables ======= */
 :root {
-  /* Soft Pastel Light Mode - Default */
-  --bg-color: #fdf6ec;
-  --text-color: #333;
-  --button-bg: #ff5757;
-  --button-hover: #ff2e2e;
-  --accent-color: #ff5757;
+  /* ===== Light Mode ===== */
+  --bg-color: #fff1f0;
+  --text-color: #d84315;
+  --button-bg: #ff7043;
+  --button-hover: #f4511e;
+  --accent-color: #ff7043;
+  --app-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --result-bg: #f3f3f3;
+  --result-hover: #e2e2e2;
+  --poster-shadow: rgba(0,0,0,0.2);
 
-  /* Neon Dark Mode Variables (default off) */
-  --dark-bg-color: #0d0d0d;
-  --dark-text-color: #00fff7;
-  --dark-button-bg: #ff00ff;
-  --dark-button-hover: #ff00ff;
-  --dark-accent-color: #00fff7;
-  --dark-box-shadow: 0 0 20px #00fff7;
+  /* ===== Dark Mode - Neon Style ===== */
+  --dark-bg-color: #1a001a;
+  --dark-text-color: #e600ff;
+  --dark-button-bg: #9b00ff;
+  --dark-button-hover: #7d00cc;
+  --dark-accent-color: #e600ff;
+  --dark-app-box-shadow: 0 0 20px #e600ff;
+  --dark-result-bg: #2a002a;
+  --dark-result-hover: #3a003a;
+  --dark-poster-shadow: rgba(230,0,255,0.5);
 }
 
 /* ======= Base Styles ======= */
@@ -37,7 +44,7 @@ body {
   padding: 20px;
   background-color: #fff;
   border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--app-box-shadow);
   transition: background 0.4s, box-shadow 0.4s;
 }
 
@@ -47,6 +54,7 @@ header h1 {
   font-size: 2.2rem;
   margin-bottom: 5px;
 }
+
 .tagline {
   font-size: 1rem;
   color: #777;
@@ -93,7 +101,7 @@ button:hover {
   background-color: var(--button-hover);
 }
 
-/* ======= Dark Mode Toggle Switch ======= */
+/* ======= Toggle Switch ======= */
 .switch {
   display: inline-block;
   width: 50px;
@@ -126,7 +134,7 @@ button:hover {
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: var(--dark-button-bg);
 }
 
 input:checked + .slider::before {
@@ -149,7 +157,7 @@ input:checked + .slider::before {
   height: auto;
   border-radius: 12px;
   margin-top: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 8px var(--poster-shadow);
   transition: box-shadow 0.4s;
 }
 
@@ -177,17 +185,19 @@ input:checked + .slider::before {
   margin-top: 20px;
   text-align: left;
 }
+
 .result-item {
   list-style: none;
   margin: 8px 0;
-  background: #f3f3f3;
+  background: var(--result-bg);
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
+
 .result-item:hover {
-  background: #e2e2e2;
+  background: var(--result-hover);
 }
 
 /* ======= Footer ======= */
@@ -197,51 +207,49 @@ footer {
   color: #666;
 }
 
-/* ======================= */
-/*  DARK MODE (uses root vars) */
-/* ======================= */
+/* ======= DARK MODE ======= */
 body.dark-mode {
   --bg-color: var(--dark-bg-color);
   --text-color: var(--dark-text-color);
   --button-bg: var(--dark-button-bg);
   --button-hover: var(--dark-button-hover);
   --accent-color: var(--dark-accent-color);
-  --app-box-shadow: var(--dark-box-shadow);
+  --app-box-shadow: var(--dark-app-box-shadow);
 
-  background-color: var(--dark-bg-color);
-  color: var(--dark-text-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 body.dark-mode .app-container {
-  background-color: #111;
+  background-color: var(--bg-color);
   box-shadow: var(--app-box-shadow);
 }
 
 body.dark-mode button {
-  background-color: var(--dark-button-bg);
+  background-color: var(--button-bg);
   color: #fff;
-  box-shadow: 0 0 10px var(--dark-accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
 body.dark-mode button:hover {
-  box-shadow: 0 0 20px var(--dark-accent-color), 0 0 30px #ff00ff;
+  box-shadow: 0 0 20px var(--accent-color), 0 0 30px #ff00ff;
 }
 
 body.dark-mode #movie-display {
-  background-color: #111;
-  box-shadow: 0 0 15px var(--dark-accent-color);
+  background-color: var(--bg-color);
+  box-shadow: 0 0 15px var(--accent-color);
 }
 
 body.dark-mode .result-item {
-  background-color: #2a2a2a;
+  background-color: var(--dark-result-bg);
 }
 
 body.dark-mode .result-item:hover {
-  background-color: #3a3a3a;
+  background-color: var(--dark-result-hover);
 }
 
 body.dark-mode #movie-poster {
-  box-shadow: 0 3px 8px rgba(0,255,255,0.5);
+  box-shadow: 0 3px 8px var(--dark-poster-shadow);
 }
 
 /* ======= Responsive Design ======= */
