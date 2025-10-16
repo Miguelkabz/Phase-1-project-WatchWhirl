@@ -113,3 +113,6 @@ searchForm.addEventListener("submit", (e) => {
     searchInput.value = "";
   }
 });
+
+// Initial random movie on page load
+getRandomMovie();

@@ -1,71 +1,253 @@
-/* 🌞 Light Mode (default) */
+/* ======================= */
+/*  WATCHWHIRL - STYLE.CSS  */
+/* ======================= */
+
+/* ======= Light Mode Variables ======= */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --card-bg: #f8f8f8;
-  --accent-color: #ff4b4b;
+  /* Soft Pastel Light Mode - Default */
+  --bg-color: #fdf6ec;
+  --text-color: #333;
   --button-bg: #ff5757;
-  --button-text: #ffffff;
+  --button-hover: #ff2e2e;
+  --accent-color: #ff5757;
+
+  /* Neon Dark Mode Variables (default off) */
+  --dark-bg-color: #0d0d0d;
+  --dark-text-color: #00fff7;
+  --dark-button-bg: #ff00ff;
+  --dark-button-hover: #ff00ff;
+  --dark-accent-color: #00fff7;
+  --dark-box-shadow: 0 0 20px #00fff7;
 }
 
-/* 🌙 Dark Mode */
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #f5f5f5;
-  --card-bg: #1e1e1e;
-  --accent-color: #ff8c00;
-  --button-bg: #ff8c00;
-  --button-text: #000000;
-}
-
-/* General styling */
+/* ======= Base Styles ======= */
 body {
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
   margin: 0;
+  padding: 0;
+  transition: background 0.4s, color 0.4s;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
   padding: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.4s, box-shadow 0.4s;
 }
 
-header {
-  margin-bottom: 20px;
+/* ======= Header ======= */
+header h1 {
+  font-weight: 600;
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+.tagline {
+  font-size: 1rem;
+  color: #777;
 }
 
-.toggle-container {
-  margin-top: 10px;
+/* ======= Controls ======= */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 button {
   background-color: var(--button-bg);
-  color: var(--button-text);
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
   cursor: pointer;
-  margin: 5px;
-  transition: all 0.3s ease;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
-  opacity: 0.85;
+  background-color: var(--button-hover);
 }
 
-#movie-display {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+#search-form input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1rem;
 }
 
-img {
-  width: 250px;
-  border-radius: 10px;
-  margin-top: 10px;
+#search-form button {
+  background-color: var(--button-bg);
 }
 
-.hidden {
+#search-form button:hover {
+  background-color: var(--button-hover);
+}
+
+/* ======= Dark Mode Toggle Switch ======= */
+.switch {
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  position: relative;
+}
+
+.switch input {
   display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 26px;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ======= Movie Display ======= */
+#movie-display {
+  margin-top: 30px;
+  padding: 20px;
+}
+
+#movie-title {
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+#movie-poster {
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  transition: box-shadow 0.4s;
+}
+
+#movie-overview {
+  margin-top: 15px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ======= Spinner & Error ======= */
+#loading-spinner {
+  display: none;
+  color: #555;
+  margin: 10px 0;
+}
+
+#error-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* ======= Search Results ======= */
+#search-results {
+  margin-top: 20px;
+  text-align: left;
+}
+.result-item {
+  list-style: none;
+  margin: 8px 0;
+  background: #f3f3f3;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.result-item:hover {
+  background: #e2e2e2;
+}
+
+/* ======= Footer ======= */
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ======================= */
+/*  DARK MODE (uses root vars) */
+/* ======================= */
+body.dark-mode {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --button-bg: var(--dark-button-bg);
+  --button-hover: var(--dark-button-hover);
+  --accent-color: var(--dark-accent-color);
+  --app-box-shadow: var(--dark-box-shadow);
+
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
+}
+
+body.dark-mode .app-container {
+  background-color: #111;
+  box-shadow: var(--app-box-shadow);
+}
+
+body.dark-mode button {
+  background-color: var(--dark-button-bg);
+  color: #fff;
+  box-shadow: 0 0 10px var(--dark-accent-color);
+}
+
+body.dark-mode button:hover {
+  box-shadow: 0 0 20px var(--dark-accent-color), 0 0 30px #ff00ff;
+}
+
+body.dark-mode #movie-display {
+  background-color: #111;
+  box-shadow: 0 0 15px var(--dark-accent-color);
+}
+
+body.dark-mode .result-item {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .result-item:hover {
+  background-color: #3a3a3a;
+}
+
+body.dark-mode #movie-poster {
+  box-shadow: 0 3px 8px rgba(0,255,255,0.5);
+}
+
+/* ======= Responsive Design ======= */
+@media (max-width: 600px) {
+  .app-container {
+    margin: 20px;
+    padding: 15px;
+  }
 }

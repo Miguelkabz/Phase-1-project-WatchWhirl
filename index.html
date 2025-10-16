@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎬 Movie Picker</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WatchWhirl</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Hover.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <header>
-    <h1>🎥 WatchWhirl</h1>
-    <p class="tagline">Find your next favorite movie!</p>
-    
-    <div class="toggle-container">
-      <label for="dark-toggle">🌙 Dark Mode</label>
-      <input type="checkbox" id="dark-toggle">
-    </div>
-  </header>
+  <div class="app-container">
+    <header>
+      <h1 class="animate__animated animate__fadeInDown">🎬 WatchWhirl</h1>
+      <p class="tagline">Spin into your next movie adventure!</p>
+    </header>
 
-  <main>
-    <section id="controls">
+    <div class="controls">
+      <button id="pick-movie" class="hvr-bounce-in">
+        <i class="fa-solid fa-shuffle"></i> Random Movie
+      </button>
+
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Search for a movie..." />
-        <button type="submit">Search</button>
+        <button type="submit" class="hvr-grow">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
       </form>
-      <button id="pick-movie">🎲 Pick Random Movie</button>
-    </section>
 
-    <section id="loading-spinner" class="hidden">Loading...</section>
-    <section id="error-message"></section>
+      <label class="switch">
+        <input type="checkbox" id="dark-toggle" />
+        <span class="slider"></span> 🌙
+      </label>
+    </div>
 
-    <section id="movie-display" class="hidden">
-      <h2 id="movie-title"></h2>
-      <img id="movie-poster" alt="Movie Poster" />
-      <p id="movie-overview"></p>
-    </section>
+    <main>
+      <div id="movie-display" class="animate__animated animate__fadeIn">
+        <h2 id="movie-title">Your Movie Title Here</h2>
+        <img id="movie-poster" src="" alt="Movie Poster" />
+        <p id="movie-overview">Movie overview will be displayed here.</p>
+      </div>
 
-    <section id="search-results" class="hidden">
-      <h3>Search Results:</h3>
-      <ul id="results-list"></ul>
-    </section>
-  </main>
+      <div id="error-message"></div>
+      <div id="loading-spinner">Loading...</div>
 
-  <footer>
-    <p>© 2025 Movie Picker</p>
-  </footer>
+      <div id="search-results" style="display: none;">
+        <h3>Search Results:</h3>
+        <ul id="results-list"></ul>
+      </div>
+    </main>
 
+    <footer>
+      <p>🎥 Made with by Miguel Kabue Gicheru | Powered by TMDb API</p>
+    </footer>
+  </div>
+
+  <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Custom JS -->
+  <script src="./movie.js"></script>
 </body>
 </html>
