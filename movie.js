@@ -102,3 +102,15 @@ function displayMovie(movie) {
 function showLoading(show) {
   loadingSpinner.style.display = show ? "block" : "none";
 }
+
+// 🎬 EVENT LISTENERS
+pickMovieBtn.addEventListener("click", getRandomMovie);
+
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const query = searchInput.value.trim();
+  if (query) {
+    searchMovie(query);
+    searchInput.value = "";
+  }
+});
