@@ -14,8 +14,8 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <!-- Hover.css for hover effects -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+  <!-- Hover.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hvr-min.css" />
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./style.css" />
@@ -27,7 +27,6 @@
       <p class="tagline">Spin into your next movie adventure!</p>
     </header>
 
-    <!-- Controls -->
     <div class="controls">
       <button id="pick-movie" class="hvr-bounce-in">
         <i class="fa-solid fa-shuffle"></i> Random Movie
@@ -40,17 +39,12 @@
         </button>
       </form>
 
-      <!-- Mode Selector -->
-      <select id="mode-selector">
-        <option value="light">Light Mode</option>
-        <option value="dark">Dark Neon</option>
-        <option value="neon">Neon</option>
-        <option value="ocean">Ocean</option>
-        <option value="pastel">Pastel</option>
-      </select>
+      <label class="switch">
+        <input type="checkbox" id="dark-toggle" />
+        <span class="slider"></span> 
+      </label>
     </div>
 
-    <!-- Movie Display -->
     <main>
       <div id="movie-display" class="animate__animated animate__fadeIn hidden">
         <h2 id="movie-title">Your Movie Title Here</h2>
@@ -68,7 +62,7 @@
     </main>
 
     <footer>
-      <p>🎥 Made with by Miguel Kabue Gicheru | Powered by TMDb API</p>
+      <p>🎥 Made by Miguel Kabue Gicheru | Powered by TMDb API</p>
     </footer>
   </div>
 
