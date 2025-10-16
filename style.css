@@ -1,7 +1,22 @@
+/*NEON NIGHTS THEME - WATCHWHIRL */
+
+/* ===== Root Colors ===== */
+:root {
+  --primary-bg: #0b0f19;
+  --secondary-bg: #1b1f2a;
+  --accent-blue: #00bfff;
+  --accent-purple: #9b5de5;
+  --accent-pink: #ff006e;
+  --text-main: #e0e0e0;
+  --text-dim: #9a9a9a;
+  --hover-glow: #00bfff80;
+}
+
+/* ===== Global Styles ===== */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fdf6ec;
-  color: #333;
+  background-color: var(--primary-bg);
+  color: var(--text-main);
   margin: 0;
   padding: 0;
   transition: background 0.4s, color 0.4s;
@@ -12,23 +27,25 @@ body {
   margin: 40px auto;
   text-align: center;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--secondary-bg);
   border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
 }
 
-/* ======= Header ======= */
+/* ===== Header ===== */
 header h1 {
   font-weight: 600;
   font-size: 2.2rem;
+  color: var(--accent-purple);
   margin-bottom: 5px;
+  text-shadow: 0 0 10px var(--accent-purple);
 }
 .tagline {
   font-size: 1rem;
-  color: #777;
+  color: var(--text-dim);
 }
 
-/* ======= Controls ======= */
+/* ===== Controls ===== */
 .controls {
   display: flex;
   justify-content: center;
@@ -39,37 +56,33 @@ header h1 {
 }
 
 button {
-  background-color: #ff5757;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
   border: none;
   color: white;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px var(--hover-glow);
 }
 
 button:hover {
-  background-color: #ff2e2e;
+  box-shadow: 0 0 20px var(--accent-blue);
+  transform: translateY(-2px);
 }
 
 #search-form input {
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--accent-blue);
+  background-color: #141a28;
+  color: var(--text-main);
   outline: none;
   font-size: 1rem;
 }
 
-#search-form button {
-  background-color: #0099ff;
-}
-
-#search-form button:hover {
-  background-color: #007acc;
-}
-
-/* ======= Switch (Dark Mode Toggle) ======= */
+/* ===== Toggle Switch ===== */
 .switch {
   position: relative;
   display: inline-block;
@@ -84,8 +97,8 @@ button:hover {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
+  inset: 0;
+  background-color: #333;
   border-radius: 34px;
   transition: .4s;
 }
@@ -101,53 +114,55 @@ button:hover {
   transition: .4s;
 }
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--accent-blue);
 }
 input:checked + .slider:before {
   transform: translateX(24px);
 }
 
-/* ======= Movie Display ======= */
+/* ===== Movie Display ===== */
 #movie-display {
   margin-top: 30px;
   padding: 20px;
+  background-color: #141a28;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.1);
 }
+
 #movie-title {
   font-size: 1.8rem;
-  color: #222;
+  color: var(--accent-blue);
+  text-shadow: 0 0 8px var(--accent-blue);
 }
+
 #movie-poster {
   width: 250px;
-  height: auto;
   border-radius: 12px;
   margin-top: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(155, 93, 229, 0.3);
 }
+
 #movie-overview {
   margin-top: 15px;
   font-size: 1rem;
   line-height: 1.6;
-}
-#movie-rating,
-#movie-genres {
-  font-size: 1rem;
-  color: #555;
-  margin-top: 8px;
+  color: var(--text-main);
 }
 
-/* ======= Spinner & Error ======= */
+/* ===== Spinner & Error ===== */
 #loading-spinner {
   display: none;
-  color: #555;
+  color: var(--accent-blue);
   margin: 10px 0;
 }
+
 #error-message {
-  color: red;
+  color: var(--accent-pink);
   font-weight: bold;
   margin: 10px 0;
 }
 
-/* ======= Search Results ======= */
+/* ===== Search Results ===== */
 #search-results {
   margin-top: 20px;
   text-align: left;
@@ -155,53 +170,32 @@ input:checked + .slider:before {
 .result-item {
   list-style: none;
   margin: 8px 0;
-  background: #f3f3f3;
+  background: #1c2235;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  color: var(--text-main);
 }
 .result-item:hover {
-  background: #e2e2e2;
+  background: #282f45;
+  box-shadow: 0 0 8px var(--accent-blue);
 }
 
-/* ======= Footer ======= */
+/* ===== Footer ===== */
 footer {
   margin-top: 30px;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-dim);
 }
 
-/* ======= Dark Mode ======= */
-body.dark-mode {
-  background-color: #121212;
-  color: #eee;
-}
-body.dark-mode .app-container {
-  background-color: #1f1f1f;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
-}
-body.dark-mode button {
-  background-color: #444;
-}
-body.dark-mode .result-item {
-  background-color: #2a2a2a;
-}
-body.dark-mode .result-item:hover {
-  background-color: #3a3a3a;
-}
-body.dark-mode #movie-poster {
-  box-shadow: 0 3px 8px rgba(255,255,255,0.2);
-}
-body.dark-mode #movie-rating,
-body.dark-mode #movie-genres {
-  color: #ccc;
-}
-
-/* ======= Responsive ======= */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
   .app-container {
     margin: 20px;
     padding: 15px;
+  }
+  #movie-poster {
+    width: 200px;
   }
 }
