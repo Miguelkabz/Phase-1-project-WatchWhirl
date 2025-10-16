@@ -87,3 +87,13 @@ async function searchMovie(query) {
     showLoading(false);
   }
 }
+
+// 🎬 DISPLAY MOVIE DETAILS
+function displayMovie(movie) {
+  movieTitle.textContent = movie.title;
+  movieOverview.textContent = movie.overview || "No overview available.";
+  moviePoster.src = movie.poster_path ? `${IMG_BASE}${movie.poster_path}` : "https://via.placeholder.com/300x450?text=No+Image";
+  moviePoster.alt = movie.title;
+  movieDisplay.classList.add("animate__fadeIn");
+  setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
+}
