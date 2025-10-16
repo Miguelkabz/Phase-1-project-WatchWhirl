@@ -1,0 +1,194 @@
+/* ======= Global Styles ======= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fdf6ec;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  transition: background 0.4s, color 0.4s;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Header ======= */
+header h1 {
+  font-weight: 600;
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+.tagline {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* ======= Controls ======= */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+button {
+  background-color: #ff5757;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ff2e2e;
+}
+
+#search-form input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1rem;
+}
+
+#search-form button {
+  background-color: #0099ff;
+}
+
+#search-form button:hover {
+  background-color: #007acc;
+}
+
+/* ======= Switch (Dark Mode Toggle) ======= */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* ======= Movie Display ======= */
+#movie-display {
+  margin-top: 30px;
+  padding: 20px;
+}
+
+#movie-title {
+  font-size: 1.8rem;
+  color: #222;
+}
+
+#movie-poster {
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+#movie-overview {
+  margin-top: 15px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ======= Spinner & Error ======= */
+#loading-spinner {
+  display: none;
+  color: #555;
+  margin: 10px 0;
+}
+
+#error-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* ======= Search Results ======= */
+#search-results {
+  margin-top: 20px;
+  text-align: left;
+}
+.result-item {
+  list-style: none;
+  margin: 8px 0;
+  background: #f3f3f3;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.result-item:hover {
+  background: #e2e2e2;
+}
+
+/* ======= Footer ======= */
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ======= Dark Mode ======= */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+body.dark-mode .app-container {
+  background-color: #1f1f1f;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+body.dark-mode button {
+  background-color: #444;
+}
+body.dark-mode .result-item {
+  background-color: #2a2a2a;
+}
+body.dark-mode .result-item:hover {
+  background-color: #3a3a3a;
+}
+body.dark-mode #movie-poster {
+  box-shadow: 0 3px 8px rgba(255,255,255,0.2);
+}
