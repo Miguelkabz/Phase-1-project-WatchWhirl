@@ -1,8 +1,9 @@
 // TMDb API Configuration
 const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "60b1492de30a836cec7e69c34d6302f4"; 
+const API_KEY = "60b1492de30a836cec7e69c34d6302f4";
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
+// DOM Elements
 const movieDisplay = document.getElementById("movie-display");
 const movieTitle = document.getElementById("movie-title");
 const moviePoster = document.getElementById("movie-poster");
@@ -11,18 +12,16 @@ const errorMessage = document.getElementById("error-message");
 const loadingSpinner = document.getElementById("loading-spinner");
 const resultsList = document.getElementById("results-list");
 const searchResults = document.getElementById("search-results");
-
 const pickMovieBtn = document.getElementById("pick-movie");
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const darkToggle = document.getElementById("dark-toggle");
 
-// DARK MODE SETUP (with memory)
+// DARK MODE (save theme)
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
   darkToggle.checked = true;
 }
-
 darkToggle.addEventListener("change", () => {
   if (darkToggle.checked) {
     document.body.classList.add("dark-mode");
@@ -33,7 +32,7 @@ darkToggle.addEventListener("change", () => {
   }
 });
 
-// FETCH A RANDOM POPULAR MOVIE
+// FETCH RANDOM POPULAR MOVIE
 async function getRandomMovie() {
   try {
     showLoading(true);
@@ -56,7 +55,7 @@ async function getRandomMovie() {
   }
 }
 
-// SEARCH FOR A MOVIE
+// SEARCH FOR MOVIE
 async function searchMovie(query) {
   try {
     showLoading(true);
@@ -95,18 +94,34 @@ function displayMovie(movie) {
     ? `${IMG_PATH}${movie.poster_path}`
     : "https://via.placeholder.com/300x450?text=No+Image";
   moviePoster.alt = movie.title;
+
+  // Rating
+  const rating = movie.vote_average ? movie.vote_average.toFixed(1) : "N/A";
+  document.getElementById("movie-rating").textContent = `⭐ Rating: ${rating}`;
+
+  // Genres
+  const genreMap = {
+    28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
+    99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
+    27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Sci-Fi",
+    10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
+  };
+  const genres = movie.genre_ids
+    ? movie.genre_ids.map(id => genreMap[id]).filter(Boolean).join(", ")
+    : "Unknown";
+  document.getElementById("movie-genres").textContent = `🎭 Genres: ${genres}`;
+
   movieDisplay.classList.add("animate__fadeIn");
   setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
 }
 
-// LOADING HANDLER
+// SHOW LOADING
 function showLoading(show) {
   loadingSpinner.style.display = show ? "block" : "none";
 }
 
 // EVENT LISTENERS
 pickMovieBtn.addEventListener("click", getRandomMovie);
-
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const query = searchInput.value.trim();

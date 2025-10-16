@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WatchWhirl</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WatchWhirl</title>
 
-    <!-- Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
@@ -14,26 +14,29 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <!-- Hover.css for hover effects -->
+  <!-- Hover.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./style.css" />
-
 </head>
 <body>
-     <div class="app-container">
+  <div class="app-container">
     <header>
       <h1 class="animate__animated animate__fadeInDown">🎬 WatchWhirl</h1>
       <p class="tagline">Spin into your next movie adventure!</p>
     </header>
 
     <div class="controls">
-      <button id="pick-movie" class="hvr-bounce-in"><i class="fa-solid fa-shuffle"></i> Random Movie</button>
+      <button id="pick-movie" class="hvr-bounce-in">
+        <i class="fa-solid fa-shuffle"></i> Random Movie
+      </button>
 
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Search for a movie..." />
-        <button type="submit" class="hvr-grow"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        <button type="submit" class="hvr-grow">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
       </form>
 
       <label class="switch">
@@ -47,6 +50,8 @@
         <h2 id="movie-title">Your Movie Title Here</h2>
         <img id="movie-poster" src="" alt="Movie Poster" />
         <p id="movie-overview">Movie overview will be displayed here.</p>
+        <p id="movie-rating"></p>
+        <p id="movie-genres"></p>
       </div>
 
       <div id="error-message"></div>
@@ -59,14 +64,14 @@
     </main>
 
     <footer>
-      <p>🎥 Made with ❤️ by Miguel Kabue Gicheru | Powered by TMDb API</p>
+      <p>🎥 Made by Miguel Kabue Gicheru | Powered by TMDb </p>
     </footer>
   </div>
 
-  <!-- Axios for API requests -->
+  <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!-- Custom JS -->
-    <script src="./movie.js"></script>
+  <!-- Custom JS -->
+  <script src="./movie.js"></script>
 </body>
 </html>
