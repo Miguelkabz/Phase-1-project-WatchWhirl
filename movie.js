@@ -1,6 +1,6 @@
 // TMDb API Configuration
 const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "YOUR_API_KEY"; // Replace this with your TMDb API key
+const API_KEY = "60b1492de30a836cec7e69c34d6302f4"; 
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 const movieDisplay = document.getElementById("movie-display");
