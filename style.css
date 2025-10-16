@@ -1,30 +1,51 @@
 /* ======================= */
-/*  WATCHWHIRL - STYLE.CSS  */
+/*  WATCHWHIRL - STYLE.CSS */
 /* ======================= */
 
-/* ======= Color Variables ======= */
+/* ======= Root Variables for Modes ======= */
 :root {
- /* Light Mode */
---bg-color: #e0f2f1;       /* mint background */
---text-color: #00796b;     /* teal text */
---button-bg: #26a69a;      
---button-hover: #00796b;   
---accent-color: #26a69a;
---app-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
---result-bg: #f0f7f6;
---result-hover: #d9efee;
---poster-shadow: rgba(0,0,0,0.2);
+  /* Light Mode */
+  --bg-color: #fff1f0;
+  --text-color: #d84315;
+  --button-bg: #ff7043;
+  --button-hover: #f4511e;
+  --accent-color: #ff7043;
+  --app-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --result-bg: #f3f3f3;
+  --result-hover: #e2e2e2;
+  --poster-shadow: rgba(0,0,0,0.2);
 
-/* Dark Mode */
---dark-bg-color: #220022;  
---dark-text-color: #ff00ff; 
---dark-button-bg: #ff00cc;  
---dark-button-hover: #cc00aa; 
---dark-accent-color: #ff00ff;
---dark-app-box-shadow: 0 0 20px #ff00ff;
---dark-result-bg: #330033;
---dark-result-hover: #550055;
---dark-poster-shadow: rgba(255,0,255,0.5);
+  /* Dark Neon */
+  --dark-bg-color: #1a001a;
+  --dark-text-color: #e600ff;
+  --dark-button-bg: #9b00ff;
+  --dark-button-hover: #7d00cc;
+  --dark-accent-color: #e600ff;
+  --dark-app-box-shadow: 0 0 20px #e600ff;
+  --dark-result-bg: #2a002a;
+  --dark-result-hover: #3a003a;
+  --dark-poster-shadow: rgba(230,0,255,0.5);
+
+  /* Neon */
+  --neon-bg-color: #000000;
+  --neon-text-color: #39ff14;
+  --neon-button-bg: #0ff;
+  --neon-button-hover: #0aa;
+  --neon-accent-color: #39ff14;
+
+  /* Ocean */
+  --ocean-bg-color: #e0f7fa;
+  --ocean-text-color: #006064;
+  --ocean-button-bg: #00acc1;
+  --ocean-button-hover: #00838f;
+  --ocean-accent-color: #00acc1;
+
+  /* Pastel */
+  --pastel-bg-color: #ffefeb;
+  --pastel-text-color: #d81b60;
+  --pastel-button-bg: #f48fb1;
+  --pastel-button-hover: #f06292;
+  --pastel-accent-color: #f48fb1;
 }
 
 /* ======= Base Styles ======= */
@@ -42,24 +63,17 @@ body {
   margin: 40px auto;
   text-align: center;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--bg-color);
   border-radius: 20px;
   box-shadow: var(--app-box-shadow);
   transition: background 0.4s, box-shadow 0.4s;
 }
 
-/* ======= Header ======= */
-header h1 {
-  font-weight: 600;
-  font-size: 2.2rem;
-  margin-bottom: 5px;
-}
-.tagline {
-  font-size: 1rem;
-  color: #777;
-}
+/* Header */
+header h1 { font-weight: 600; font-size: 2.2rem; margin-bottom: 5px; }
+.tagline { font-size: 1rem; color: #777; }
 
-/* ======= Controls ======= */
+/* Controls */
 .controls {
   display: flex;
   justify-content: center;
@@ -80,9 +94,7 @@ button {
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-button:hover {
-  background-color: var(--button-hover);
-}
+button:hover { background-color: var(--button-hover); }
 
 #search-form input {
   padding: 8px;
@@ -96,22 +108,11 @@ button:hover {
   background-color: var(--button-bg);
 }
 
-#search-form button:hover {
-  background-color: var(--button-hover);
-}
+#search-form button:hover { background-color: var(--button-hover); }
 
-/* ======= Toggle Switch ======= */
-.switch {
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-  position: relative;
-}
-
-.switch input {
-  display: none;
-}
-
+/* Toggle Switch */
+.switch { display: inline-block; width: 50px; height: 26px; position: relative; }
+.switch input { display: none; }
 .slider {
   position: absolute;
   inset: 0;
@@ -119,7 +120,6 @@ button:hover {
   border-radius: 26px;
   transition: 0.3s;
 }
-
 .slider::before {
   content: "";
   position: absolute;
@@ -132,25 +132,9 @@ button:hover {
   transition: 0.3s;
 }
 
-input:checked + .slider {
-  background-color: var(--dark-button-bg);
-}
-
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* ======= Movie Display ======= */
-#movie-display {
-  margin-top: 30px;
-  padding: 20px;
-}
-
-#movie-title {
-  font-size: 1.8rem;
-  color: var(--text-color);
-}
-
+/* Movie Display */
+#movie-display { margin-top: 30px; padding: 20px; }
+#movie-title { font-size: 1.8rem; color: var(--text-color); }
 #movie-poster {
   width: 250px;
   height: auto;
@@ -159,32 +143,14 @@ input:checked + .slider::before {
   box-shadow: 0 3px 8px var(--poster-shadow);
   transition: box-shadow 0.4s;
 }
+#movie-overview { margin-top: 15px; font-size: 1rem; line-height: 1.6; }
 
-#movie-overview {
-  margin-top: 15px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
+/* Spinner & Error */
+#loading-spinner.hidden, #movie-display.hidden, #search-results.hidden { display: none; }
+#error-message { color: red; font-weight: bold; margin: 10px 0; }
 
-/* ======= Spinner & Error ======= */
-#loading-spinner {
-  display: none;
-  color: #555;
-  margin: 10px 0;
-}
-
-#error-message {
-  color: red;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-/* ======= Search Results ======= */
-#search-results {
-  margin-top: 20px;
-  text-align: left;
-}
-
+/* Search Results */
+#search-results { margin-top: 20px; text-align: left; }
 .result-item {
   list-style: none;
   margin: 8px 0;
@@ -194,73 +160,12 @@ input:checked + .slider::before {
   cursor: pointer;
   transition: 0.3s;
 }
+.result-item:hover { background: var(--result-hover); }
 
-.result-item:hover {
-  background: var(--result-hover);
-}
+/* Footer */
+footer { margin-top: 30px; font-size: 0.9rem; color: #666; }
 
-/* ======= Footer ======= */
-footer {
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* ======= DARK MODE ======= */
-body.dark-mode {
-  --bg-color: var(--dark-bg-color);
-  --text-color: var(--dark-text-color);
-  --button-bg: var(--dark-button-bg);
-  --button-hover: var(--dark-button-hover);
-  --accent-color: var(--dark-accent-color);
-  --app-box-shadow: var(--dark-app-box-shadow);
-  --result-bg: var(--dark-result-bg);
-  --result-hover: var(--dark-result-hover);
-  --poster-shadow: var(--dark-poster-shadow);
-
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-body.dark-mode .app-container {
-  background-color: var(--bg-color);
-  box-shadow: var(--app-box-shadow);
-}
-
-body.dark-mode button {
-  background-color: var(--button-bg);
-  color: #fff;
-  box-shadow: 0 0 10px var(--accent-color);
-}
-
-body.dark-mode button:hover {
-  box-shadow: 0 0 20px var(--accent-color), 0 0 30px #ff00ff;
-}
-
-body.dark-mode #movie-display {
-  background-color: var(--bg-color);
-  box-shadow: 0 0 15px var(--accent-color);
-}
-
-body.dark-mode .result-item {
-  background-color: var(--result-bg);
-}
-
-body.dark-mode .result-item:hover {
-  background-color: var(--result-hover);
-}
-
-body.dark-mode #movie-poster {
-  box-shadow: 0 3px 8px var(--poster-shadow);
-}
-
-/* ======= Responsive Design ======= */
+/* Responsive */
 @media (max-width: 600px) {
-  .app-container {
-    margin: 20px;
-    padding: 15px;
-  }
+  .app-container { margin: 20px; padding: 15px; }
 }
-
-/* Hidden class for JS */
-.hidden { display: none; }
