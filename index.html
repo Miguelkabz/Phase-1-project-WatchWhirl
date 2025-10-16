@@ -22,50 +22,51 @@
 
 </head>
 <body>
+     <div class="app-container">
     <header>
-       <h1 class="animate__animated animate__fadeInDown">WatchWhirl</h1>
-       <p>Can’t decide what to watch? Let WatchWhirl spin the reel for you!</p>
+      <h1 class="animate__animated animate__fadeInDown">🎬 WatchWhirl</h1>
+      <p class="tagline">Spin into your next movie adventure!</p>
     </header>
 
-    <main> 
-      <!-- Controls Section -->
-  <div class="controls">
-    <button id="pick-movie" class="btn"><i class="fa-solid fa-shuffle"></i> Random Movie</button>
+    <div class="controls">
+      <button id="pick-movie" class="hvr-bounce-in"><i class="fa-solid fa-shuffle"></i> Random Movie</button>
 
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search for a movie..." />
-      <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-    </form>
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search for a movie..." />
+        <button type="submit" class="hvr-grow"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+      </form>
 
-    <label class="switch">
-      <input type="checkbox" id="dark-toggle" />
-      <span class="slider"></span> 🌙
-    </label>
-  </div>
+      <label class="switch">
+        <input type="checkbox" id="dark-toggle" />
+        <span class="slider"></span> 🌙
+      </label>
+    </div>
 
-  <!-- Movie Display Section -->
-  <div id="movie-display" class="animate__animated animate__fadeIn">
-    <h2 id="movie-title">Your Movie Title Here</h2>
-    <img id="movie-poster" src="" alt="Movie Poster" />
-    <p id="movie-overview">Movie overview will be displayed here.</p>
-  </div>
+    <main>
+      <div id="movie-display" class="animate__animated animate__fadeIn">
+        <h2 id="movie-title">Your Movie Title Here</h2>
+        <img id="movie-poster" src="" alt="Movie Poster" />
+        <p id="movie-overview">Movie overview will be displayed here.</p>
+      </div>
 
-  <div id="error-message"></div>
-  <div id="loading-spinner">Loading...</div>
+      <div id="error-message"></div>
+      <div id="loading-spinner">Loading...</div>
 
-  <div id="search-results">
-    <h3>Search Results:</h3>
-    <ul id="results-list"></ul>
-  </div>
-
-
+      <div id="search-results" style="display: none;">
+        <h3>Search Results:</h3>
+        <ul id="results-list"></ul>
+      </div>
     </main>
-    <footer> 
-      <p>Powered by TMDB API 🎬 | Made by Miguel Kabue</p>
+
+    <footer>
+      <p>🎥 Made with ❤️ by Miguel Kabue Gicheru | Powered by TMDb API</p>
     </footer>
+  </div>
 
+  <!-- Axios for API requests -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-
+    <!-- Custom JS -->
     <script src="./movie.js"></script>
 </body>
 </html>
