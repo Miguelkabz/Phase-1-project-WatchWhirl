@@ -1,10 +1,11 @@
-// 🎬 TMDb API Configuration
+//TMDb API Configuration
 const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "YOUR_API_KEY"; // replace with your own if approved to use one
+const API_KEY = "YOUR_API_KEY"; // replace with your own key if approved
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 const SEARCH_API = `${API_URL}/search/movie?api_key=${API_KEY}&query=`;
 const RANDOM_API = `${API_URL}/movie/popular?api_key=${API_KEY}&page=`;
 
+// DOM Elements
 const movieDisplay = document.getElementById("movie-display");
 const movieTitle = document.getElementById("movie-title");
 const moviePoster = document.getElementById("movie-poster");
@@ -19,46 +20,42 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const darkToggle = document.getElementById("dark-toggle");
 
-// 🌙 DARK MODE SETUP (with memory)
+// DARK MODE (persistent)
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
   darkToggle.checked = true;
 }
 
 darkToggle.addEventListener("change", () => {
-  if (darkToggle.checked) {
-    document.body.classList.add("dark-mode");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.body.classList.remove("dark-mode");
-    localStorage.setItem("theme", "light");
-  }
+  const theme = darkToggle.checked ? "dark" : "light";
+  document.body.classList.toggle("dark-mode", darkToggle.checked);
+  localStorage.setItem("theme", theme);
 });
 
-// 🎞 FETCH A RANDOM POPULAR MOVIE
+// RANDOM POPULAR MOVIE
 async function getRandomMovie() {
   try {
     showLoading(true);
     errorMessage.textContent = "";
 
     const page = Math.floor(Math.random() * 10) + 1;
-    const response = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
+    const response = await axios.get(`${RANDOM_API}${page}`);
     const movies = response.data.results;
 
     if (movies.length > 0) {
       const randomMovie = movies[Math.floor(Math.random() * movies.length)];
       displayMovie(randomMovie);
     } else {
-      errorMessage.textContent = "No movies found.";
+      showError("No movies found.");
     }
-  } catch (error) {
-    errorMessage.textContent = "Error fetching movie. Please try again.";
+  } catch {
+    showError("Error fetching movie. Please try again.");
   } finally {
     showLoading(false);
   }
 }
 
-// 🔍 SEARCH FOR A MOVIE
+// SEARCH MOVIES
 async function searchMovie(query) {
   try {
     showLoading(true);
@@ -66,11 +63,11 @@ async function searchMovie(query) {
     searchResults.style.display = "none";
     resultsList.innerHTML = "";
 
-    const response = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
+    const response = await axios.get(`${SEARCH_API}${encodeURIComponent(query)}`);
     const results = response.data.results;
 
     if (results.length === 0) {
-      errorMessage.textContent = "No movies found for your search.";
+      showError("No movies found for your search.");
       return;
     }
 
@@ -78,34 +75,44 @@ async function searchMovie(query) {
     results.forEach((movie) => {
       const li = document.createElement("li");
       li.textContent = movie.title;
+      li.classList.add("result-item");
       li.addEventListener("click", () => displayMovie(movie));
       resultsList.appendChild(li);
     });
-  } catch (error) {
-    errorMessage.textContent = "Search failed. Try again.";
+  } catch {
+    showError("Search failed. Try again.");
   } finally {
     showLoading(false);
   }
 }
 
-// 🎬 DISPLAY MOVIE DETAILS
+// DISPLAY MOVIE DETAILS
 function displayMovie(movie) {
   movieTitle.textContent = movie.title;
   movieOverview.textContent = movie.overview || "No overview available.";
-  moviePoster.src = movie.poster_path ? `${IMG_BASE}${movie.poster_path}` : "https://via.placeholder.com/300x450?text=No+Image";
+  moviePoster.src = movie.poster_path
+    ? `${IMG_PATH}${movie.poster_path}`
+    : "https://via.placeholder.com/300x450?text=No+Image";
   moviePoster.alt = movie.title;
+
   movieDisplay.classList.add("animate__fadeIn");
   setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
 }
 
-// 🌀 LOADING HANDLER
+// LOADING HANDLER
 function showLoading(show) {
   loadingSpinner.style.display = show ? "block" : "none";
 }
 
-// 🎬 EVENT LISTENERS
-pickMovieBtn.addEventListener("click", getRandomMovie);
+// ERROR HANDLER
+function showError(message) {
+  errorMessage.textContent = message;
+  errorMessage.classList.add("animate__shakeX");
+  setTimeout(() => errorMessage.classList.remove("animate__shakeX"), 1000);
+}
 
+// EVENT LISTENERS
+pickMovieBtn.addEventListener("click", getRandomMovie);
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const query = searchInput.value.trim();
