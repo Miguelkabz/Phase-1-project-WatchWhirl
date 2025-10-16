@@ -16,7 +16,46 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const darkToggle = document.getElementById("dark-toggle");
 
-/* DARK MODE SETUP (with memory) */
+// ===== Modes =====
+const modes = {
+  light: { '--bg-color':'#fff1f0','--text-color':'#d84315','--button-bg':'#ff7043','--button-hover':'#f4511e','--accent-color':'#ff7043','--app-box-shadow':'0 4px 10px rgba(0,0,0,0.1)','--result-bg':'#f3f3f3','--result-hover':'#e2e2e2','--poster-shadow':'rgba(0,0,0,0.2)' },
+  dark: { '--bg-color':'#1a001a','--text-color':'#e600ff','--button-bg':'#9b00ff','--button-hover':'#7d00cc','--accent-color':'#e600ff','--app-box-shadow':'0 0 20px #e600ff','--result-bg':'#2a002a','--result-hover':'#3a003a','--poster-shadow':'rgba(230,0,255,0.5)' },
+  neon: { '--bg-color':'#000000','--text-color':'#39ff14','--button-bg':'#ff00ff','--button-hover':'#00ffff','--accent-color':'#39ff14','--app-box-shadow':'0 0 30px #39ff14','--result-bg':'#111111','--result-hover':'#222222','--poster-shadow':'#39ff14' },
+  pastel: { '--bg-color':'#fdf6f0','--text-color':'#6a1b9a','--button-bg':'#f8bbd0','--button-hover':'#f48fb1','--accent-color':'#f8bbd0','--app-box-shadow':'0 4px 10px rgba(106,27,154,0.3)','--result-bg':'#f3e5f5','--result-hover':'#e1bee7','--poster-shadow':'rgba(106,27,154,0.3)' },
+  ocean: { '--bg-color':'#e0f7fa','--text-color':'#006064','--button-bg':'#00acc1','--button-hover':'#00838f','--accent-color':'#00acc1','--app-box-shadow':'0 4px 10px rgba(0,172,193,0.3)','--result-bg':'#b2ebf2','--result-hover':'#80deea','--poster-shadow':'rgba(0,172,193,0.3)' }
+};
+
+// Apply a mode
+function applyMode(modeName) {
+  const root = document.documentElement;
+  const mode = modes[modeName];
+  for (const prop in mode) {
+    root.style.setProperty(prop, mode[prop]);
+  }
+  localStorage.setItem('selectedMode', modeName);
+}
+
+// Load saved mode on page load
+const savedMode = localStorage.getItem('selectedMode') || 'light';
+applyMode(savedMode);
+modeSelector.value = savedMode;
+
+// Mode dropdown event
+modeSelector.addEventListener('change', () => applyMode(modeSelector.value));
+
+// Optional: keep dark toggle in sync
+darkToggle.addEventListener('change', () => {
+  if (darkToggle.checked) {
+    applyMode('dark');
+    modeSelector.value = 'dark';
+  } else {
+    applyMode('light');
+    modeSelector.value = 'light';
+  }
+});
+
+
+/* DARK MODE SETUP */
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
   darkToggle.checked = true;
@@ -75,6 +114,7 @@ async function searchMovie(query) {
     results.forEach((movie) => {
       const li = document.createElement("li");
       li.textContent = movie.title;
+      li.classList.add("result-item");
       li.addEventListener("click", () => displayMovie(movie));
       resultsList.appendChild(li);
     });
@@ -104,7 +144,6 @@ function showLoading(show) {
 
 /* EVENTS */
 pickMovieBtn.addEventListener("click", getRandomMovie);
-
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const query = searchInput.value.trim();
@@ -114,5 +153,5 @@ searchForm.addEventListener("submit", (e) => {
   }
 });
 
-// Initial random movie on page load
+/* INITIAL RANDOM MOVIE */
 getRandomMovie();

@@ -4,27 +4,27 @@
 
 /* ======= Color Variables ======= */
 :root {
-  /* ===== Light Mode ===== */
-  --bg-color: #fff1f0;
-  --text-color: #d84315;
-  --button-bg: #ff7043;
-  --button-hover: #f4511e;
-  --accent-color: #ff7043;
-  --app-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  --result-bg: #f3f3f3;
-  --result-hover: #e2e2e2;
-  --poster-shadow: rgba(0,0,0,0.2);
+ /* Light Mode */
+--bg-color: #e0f2f1;       /* mint background */
+--text-color: #00796b;     /* teal text */
+--button-bg: #26a69a;      
+--button-hover: #00796b;   
+--accent-color: #26a69a;
+--app-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+--result-bg: #f0f7f6;
+--result-hover: #d9efee;
+--poster-shadow: rgba(0,0,0,0.2);
 
-  /* ===== Dark Mode - Neon Style ===== */
-  --dark-bg-color: #1a001a;
-  --dark-text-color: #e600ff;
-  --dark-button-bg: #9b00ff;
-  --dark-button-hover: #7d00cc;
-  --dark-accent-color: #e600ff;
-  --dark-app-box-shadow: 0 0 20px #e600ff;
-  --dark-result-bg: #2a002a;
-  --dark-result-hover: #3a003a;
-  --dark-poster-shadow: rgba(230,0,255,0.5);
+/* Dark Mode */
+--dark-bg-color: #220022;  
+--dark-text-color: #ff00ff; 
+--dark-button-bg: #ff00cc;  
+--dark-button-hover: #cc00aa; 
+--dark-accent-color: #ff00ff;
+--dark-app-box-shadow: 0 0 20px #ff00ff;
+--dark-result-bg: #330033;
+--dark-result-hover: #550055;
+--dark-poster-shadow: rgba(255,0,255,0.5);
 }
 
 /* ======= Base Styles ======= */
@@ -54,7 +54,6 @@ header h1 {
   font-size: 2.2rem;
   margin-bottom: 5px;
 }
-
 .tagline {
   font-size: 1rem;
   color: #777;
@@ -215,6 +214,9 @@ body.dark-mode {
   --button-hover: var(--dark-button-hover);
   --accent-color: var(--dark-accent-color);
   --app-box-shadow: var(--dark-app-box-shadow);
+  --result-bg: var(--dark-result-bg);
+  --result-hover: var(--dark-result-hover);
+  --poster-shadow: var(--dark-poster-shadow);
 
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -241,15 +243,15 @@ body.dark-mode #movie-display {
 }
 
 body.dark-mode .result-item {
-  background-color: var(--dark-result-bg);
+  background-color: var(--result-bg);
 }
 
 body.dark-mode .result-item:hover {
-  background-color: var(--dark-result-hover);
+  background-color: var(--result-hover);
 }
 
 body.dark-mode #movie-poster {
-  box-shadow: 0 3px 8px var(--dark-poster-shadow);
+  box-shadow: 0 3px 8px var(--poster-shadow);
 }
 
 /* ======= Responsive Design ======= */
@@ -259,3 +261,6 @@ body.dark-mode #movie-poster {
     padding: 15px;
   }
 }
+
+/* Hidden class for JS */
+.hidden { display: none; }
