@@ -97,3 +97,8 @@ function displayMovie(movie) {
   movieDisplay.classList.add("animate__fadeIn");
   setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
 }
+
+// 🌀 LOADING HANDLER
+function showLoading(show) {
+  loadingSpinner.style.display = show ? "block" : "none";
+}
