@@ -153,5 +153,63 @@ searchForm.addEventListener("submit", (e) => {
   }
 });
 
+// ===================== MODE SWITCHER =====================
+const modeSelector = document.getElementById("mode-selector");
+
+const modes = {
+  light: {
+    "--bg-color": "#fff1f0",
+    "--text-color": "#d84315",
+    "--button-bg": "#ff7043",
+    "--button-hover": "#f4511e",
+    "--accent-color": "#ff7043",
+    "--app-box-shadow": "0 4px 10px rgba(0,0,0,0.1)",
+    "--result-bg": "#f3f3f3",
+    "--result-hover": "#e2e2e2",
+    "--poster-shadow": "rgba(0,0,0,0.2)"
+  },
+  dark: {
+    "--bg-color": "#1a001a",
+    "--text-color": "#e600ff",
+    "--button-bg": "#9b00ff",
+    "--button-hover": "#7d00cc",
+    "--accent-color": "#e600ff",
+    "--app-box-shadow": "0 0 20px #e600ff",
+    "--result-bg": "#2a002a",
+    "--result-hover": "#3a003a",
+    "--poster-shadow": "rgba(230,0,255,0.5)"
+  },
+  neon: {
+    "--bg-color": "#000000",
+    "--text-color": "#39ff14",
+    "--button-bg": "#0ff",
+    "--button-hover": "#0aa",
+    "--accent-color": "#39ff14"
+  },
+  ocean: {
+    "--bg-color": "#e0f7fa",
+    "--text-color": "#006064",
+    "--button-bg": "#00acc1",
+    "--button-hover": "#00838f",
+    "--accent-color": "#00acc1"
+  },
+  pastel: {
+    "--bg-color": "#ffefeb",
+    "--text-color": "#d81b60",
+    "--button-bg": "#f48fb1",
+    "--button-hover": "#f06292",
+    "--accent-color": "#f48fb1"
+  }
+};
+
+modeSelector.addEventListener("change", () => {
+  const selected = modeSelector.value;
+  const vars = modes[selected];
+  for (let key in vars) {
+    document.documentElement.style.setProperty(key, vars[key]);
+  }
+});
+
+
 /* INITIAL RANDOM MOVIE */
 getRandomMovie();
