@@ -8,22 +8,41 @@
 <body>
     <header>
        <h1>WatchWhirl</h1>
-       <p>Find, explore and enjoy movies and TV shows</p>S
+       <p>Can’t decide what to watch? Let WatchWhirl spin the reel for you!</p>
     </header>
 
     <main> 
-
       <div class="controls">
-      <input type="text" id="searchInput" placeholder="Enter movie title..." />
-      <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-      <button id="randomBtn"><i class="fa-solid fa-shuffle"></i> Random</button>
-      <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+      <button id="pick-movie">🎞 Random Movie</button>
+
+
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search for a movie..." />
+        <button type="submit">🔍 Search</button>
+      </form>
+
+      <label class="switch">
+        <input type="checkbox" id="dark-toggle" />
+        <span class="slider"></span> 🌙
+      </label>
+
     </div>
 
-     <section id="movieContainer" class="movie-container">
-      <p>Start by searching for a movie or click 🎲 Random!</p>
-    </section>
+        <div id="movie-display">
+            <h2 id="movie-title">Your Movie Title Here</h2>
+            <img id="movie-poster" src="" alt="Movie Poster" />
+            <p id="movie-overview">Movie overview will be displayed here.</p>
+        </div>
     
+        <div id="error-message" style="color: red;"></div>
+    
+        <div id="loading-spinner" style="display: none;">Loading...</div>
+    
+        <div id="search-results" style="display: none;">
+            <h3>Search Results:</h3>
+            <ul id="results-list"></ul>
+        </div>
+      
     </main>
     <footer> 
 
