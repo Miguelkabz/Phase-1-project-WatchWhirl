@@ -57,3 +57,33 @@ async function getRandomMovie() {
     showLoading(false);
   }
 }
+
+// 🔍 SEARCH FOR A MOVIE
+async function searchMovie(query) {
+  try {
+    showLoading(true);
+    errorMessage.textContent = "";
+    searchResults.style.display = "none";
+    resultsList.innerHTML = "";
+
+    const response = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
+    const results = response.data.results;
+
+    if (results.length === 0) {
+      errorMessage.textContent = "No movies found for your search.";
+      return;
+    }
+
+    searchResults.style.display = "block";
+    results.forEach((movie) => {
+      const li = document.createElement("li");
+      li.textContent = movie.title;
+      li.addEventListener("click", () => displayMovie(movie));
+      resultsList.appendChild(li);
+    });
+  } catch (error) {
+    errorMessage.textContent = "Search failed. Try again.";
+  } finally {
+    showLoading(false);
+  }
+}
