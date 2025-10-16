@@ -1,9 +1,8 @@
-// 🎬 TMDb API Configuration
+// TMDb API Configuration
 const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "YOUR_API_KEY"; // 🔑 Replace with your TMDb API key
+const API_KEY = "YOUR_API_KEY"; // Replace this with your TMDb API key
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
-// 🎯 DOM Elements
 const movieDisplay = document.getElementById("movie-display");
 const movieTitle = document.getElementById("movie-title");
 const moviePoster = document.getElementById("movie-poster");
@@ -18,7 +17,7 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const darkToggle = document.getElementById("dark-toggle");
 
-// 🌙 DARK MODE SETUP (remembers your choice)
+// DARK MODE SETUP (with memory)
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
   darkToggle.checked = true;
@@ -34,32 +33,13 @@ darkToggle.addEventListener("change", () => {
   }
 });
 
-// 🌀 Show or hide loading spinner
-function showLoading(show) {
-  loadingSpinner.style.display = show ? "block" : "none";
-}
-
-// 🎬 Display selected movie
-function displayMovie(movie) {
-  movieTitle.textContent = movie.title;
-  movieOverview.textContent = movie.overview || "No overview available.";
-  moviePoster.src = movie.poster_path
-    ? `${IMG_PATH}${movie.poster_path}`
-    : "https://via.placeholder.com/300x450?text=No+Image";
-  moviePoster.alt = movie.title;
-
-  // Add a little fade animation
-  movieDisplay.classList.add("animate__fadeIn");
-  setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
-}
-
-// 🎞 Fetch a random popular movie
+// FETCH A RANDOM POPULAR MOVIE
 async function getRandomMovie() {
   try {
     showLoading(true);
     errorMessage.textContent = "";
 
-    const page = Math.floor(Math.random() * 10) + 1; // random page 1–10
+    const page = Math.floor(Math.random() * 10) + 1;
     const response = await axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
     const movies = response.data.results;
 
@@ -76,7 +56,7 @@ async function getRandomMovie() {
   }
 }
 
-// 🔍 Search for a movie
+// SEARCH FOR A MOVIE
 async function searchMovie(query) {
   try {
     showLoading(true);
@@ -95,6 +75,7 @@ async function searchMovie(query) {
     searchResults.style.display = "block";
     results.forEach((movie) => {
       const li = document.createElement("li");
+      li.classList.add("result-item");
       li.textContent = movie.title;
       li.addEventListener("click", () => displayMovie(movie));
       resultsList.appendChild(li);
@@ -106,7 +87,24 @@ async function searchMovie(query) {
   }
 }
 
-// 🎬 EVENT LISTENERS
+// DISPLAY MOVIE DETAILS
+function displayMovie(movie) {
+  movieTitle.textContent = movie.title;
+  movieOverview.textContent = movie.overview || "No overview available.";
+  moviePoster.src = movie.poster_path
+    ? `${IMG_PATH}${movie.poster_path}`
+    : "https://via.placeholder.com/300x450?text=No+Image";
+  moviePoster.alt = movie.title;
+  movieDisplay.classList.add("animate__fadeIn");
+  setTimeout(() => movieDisplay.classList.remove("animate__fadeIn"), 1000);
+}
+
+// LOADING HANDLER
+function showLoading(show) {
+  loadingSpinner.style.display = show ? "block" : "none";
+}
+
+// EVENT LISTENERS
 pickMovieBtn.addEventListener("click", getRandomMovie);
 
 searchForm.addEventListener("submit", (e) => {
