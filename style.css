@@ -1,201 +1,71 @@
-/*NEON NIGHTS THEME - WATCHWHIRL */
-
-/* ===== Root Colors ===== */
+/* 🌞 Light Mode (default) */
 :root {
-  --primary-bg: #0b0f19;
-  --secondary-bg: #1b1f2a;
-  --accent-blue: #00bfff;
-  --accent-purple: #9b5de5;
-  --accent-pink: #ff006e;
-  --text-main: #e0e0e0;
-  --text-dim: #9a9a9a;
-  --hover-glow: #00bfff80;
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --card-bg: #f8f8f8;
+  --accent-color: #ff4b4b;
+  --button-bg: #ff5757;
+  --button-text: #ffffff;
 }
 
-/* ===== Global Styles ===== */
+/* 🌙 Dark Mode */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --card-bg: #1e1e1e;
+  --accent-color: #ff8c00;
+  --button-bg: #ff8c00;
+  --button-text: #000000;
+}
+
+/* General styling */
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Poppins', sans-serif;
-  background-color: var(--primary-bg);
-  color: var(--text-main);
-  margin: 0;
-  padding: 0;
-  transition: background 0.4s, color 0.4s;
-}
-
-.app-container {
-  max-width: 800px;
-  margin: 40px auto;
   text-align: center;
+  margin: 0;
   padding: 20px;
-  background-color: var(--secondary-bg);
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ===== Header ===== */
-header h1 {
-  font-weight: 600;
-  font-size: 2.2rem;
-  color: var(--accent-purple);
-  margin-bottom: 5px;
-  text-shadow: 0 0 10px var(--accent-purple);
-}
-.tagline {
-  font-size: 1rem;
-  color: var(--text-dim);
+header {
+  margin-bottom: 20px;
 }
 
-/* ===== Controls ===== */
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin: 20px 0;
+.toggle-container {
+  margin-top: 10px;
 }
 
 button {
-  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+  background-color: var(--button-bg);
+  color: var(--button-text);
   border: none;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 10px var(--hover-glow);
+  margin: 5px;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  box-shadow: 0 0 20px var(--accent-blue);
-  transform: translateY(-2px);
+  opacity: 0.85;
 }
 
-#search-form input {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--accent-blue);
-  background-color: #141a28;
-  color: var(--text-main);
-  outline: none;
-  font-size: 1rem;
-}
-
-/* ===== Toggle Switch ===== */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  inset: 0;
-  background-color: #333;
-  border-radius: 34px;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  border-radius: 50%;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: var(--accent-blue);
-}
-input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
-/* ===== Movie Display ===== */
 #movie-display {
-  margin-top: 30px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
   padding: 20px;
-  background-color: #141a28;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.1);
-}
-
-#movie-title {
-  font-size: 1.8rem;
-  color: var(--accent-blue);
-  text-shadow: 0 0 8px var(--accent-blue);
-}
-
-#movie-poster {
-  width: 250px;
-  border-radius: 12px;
-  margin-top: 10px;
-  box-shadow: 0 0 15px rgba(155, 93, 229, 0.3);
-}
-
-#movie-overview {
-  margin-top: 15px;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-main);
-}
-
-/* ===== Spinner & Error ===== */
-#loading-spinner {
-  display: none;
-  color: var(--accent-blue);
-  margin: 10px 0;
-}
-
-#error-message {
-  color: var(--accent-pink);
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-/* ===== Search Results ===== */
-#search-results {
   margin-top: 20px;
-  text-align: left;
-}
-.result-item {
-  list-style: none;
-  margin: 8px 0;
-  background: #1c2235;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  color: var(--text-main);
-}
-.result-item:hover {
-  background: #282f45;
-  box-shadow: 0 0 8px var(--accent-blue);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Footer ===== */
-footer {
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: var(--text-dim);
+img {
+  width: 250px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 600px) {
-  .app-container {
-    margin: 20px;
-    padding: 15px;
-  }
-  #movie-poster {
-    width: 200px;
-  }
+.hidden {
+  display: none;
 }
