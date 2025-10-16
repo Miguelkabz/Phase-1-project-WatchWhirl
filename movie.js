@@ -34,3 +34,26 @@ darkToggle.addEventListener("change", () => {
     localStorage.setItem("theme", "light");
   }
 });
+
+// 🎞 FETCH A RANDOM POPULAR MOVIE
+async function getRandomMovie() {
+  try {
+    showLoading(true);
+    errorMessage.textContent = "";
+
+    const page = Math.floor(Math.random() * 10) + 1;
+    const response = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
+    const movies = response.data.results;
+
+    if (movies.length > 0) {
+      const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+      displayMovie(randomMovie);
+    } else {
+      errorMessage.textContent = "No movies found.";
+    }
+  } catch (error) {
+    errorMessage.textContent = "Error fetching movie. Please try again.";
+  } finally {
+    showLoading(false);
+  }
+}
