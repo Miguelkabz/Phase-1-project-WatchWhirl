@@ -6,6 +6,8 @@ const movieDisplay = document.getElementById("movie-display");
 const movieTitle = document.getElementById("movie-title");
 const moviePoster = document.getElementById("movie-poster");
 const movieOverview = document.getElementById("movie-overview");
+const movieRating = document.getElementById("movie-rating");
+const movieGenres = document.getElementById("movie-genres");
 const errorMessage = document.getElementById("error-message");
 const loadingSpinner = document.getElementById("loading-spinner");
 const resultsList = document.getElementById("results-list");
@@ -16,7 +18,7 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const darkToggle = document.getElementById("dark-toggle");
 
-// ===== Dark Mode Setup =====
+// ====== DARK MODE SETUP ======
 function setDarkMode(enabled) {
   if (enabled) {
     document.body.classList.add("dark-mode");
@@ -27,7 +29,7 @@ function setDarkMode(enabled) {
   }
 }
 
-// Load saved theme
+// Load saved theme on page load
 if (localStorage.getItem("theme") === "dark") {
   setDarkMode(true);
   darkToggle.checked = true;
@@ -38,14 +40,16 @@ darkToggle.addEventListener("change", () => {
   setDarkMode(darkToggle.checked);
 });
 
-// ===== Fetch Random Popular Movie =====
+// ====== FETCH RANDOM POPULAR MOVIE ======
 async function getRandomMovie() {
   try {
     showLoading(true);
     errorMessage.textContent = "";
 
     const page = Math.floor(Math.random() * 10) + 1;
-    const response = await axios.get(`${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
+    const response = await axios.get(
+      `${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}`
+    );
     const movies = response.data.results;
 
     if (movies.length > 0) {
@@ -61,7 +65,7 @@ async function getRandomMovie() {
   }
 }
 
-// ===== Search Movies =====
+// ====== SEARCH MOVIES ======
 async function searchMovie(query) {
   try {
     showLoading(true);
@@ -69,7 +73,9 @@ async function searchMovie(query) {
     resultsList.innerHTML = "";
     searchResults.classList.add("hidden");
 
-    const response = await axios.get(`${API_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
+    const response = await axios.get(
+      `${API_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
+    );
     const results = response.data.results;
 
     if (results.length === 0) {
@@ -92,10 +98,38 @@ async function searchMovie(query) {
   }
 }
 
-// ===== Display Movie =====
+// ====== FETCH GENRES LIST ======
+let genresMap = {};
+async function fetchGenres() {
+  try {
+    const response = await axios.get(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
+    response.data.genres.forEach((genre) => {
+      genresMap[genre.id] = genre.name;
+    });
+  } catch (error) {
+    console.error("Failed to fetch genres", error);
+  }
+}
+
+// ====== DISPLAY MOVIE DETAILS ======
 function displayMovie(movie) {
   movieTitle.textContent = movie.title;
   movieOverview.textContent = movie.overview || "No overview available.";
+
+  // Rating
+  movieRating.textContent = movie.vote_average
+    ? `Rating: ${movie.vote_average} ⭐`
+    : "Rating: N/A";
+
+  // Genres
+  if (movie.genre_ids && movie.genre_ids.length > 0) {
+    const genreNames = movie.genre_ids.map((id) => genresMap[id]).filter(Boolean);
+    movieGenres.textContent = genreNames.length ? `Genres: ${genreNames.join(", ")}` : "";
+  } else {
+    movieGenres.textContent = "";
+  }
+
+  // Poster
   moviePoster.src = movie.poster_path
     ? `${IMG_PATH}${movie.poster_path}`
     : "https://via.placeholder.com/300x450?text=No+Image";
@@ -104,14 +138,13 @@ function displayMovie(movie) {
   movieDisplay.classList.remove("hidden");
 }
 
-// ===== Show/Hide Loading =====
+// ====== SHOW/HIDE LOADING ======
 function showLoading(show) {
   loadingSpinner.classList.toggle("hidden", !show);
 }
 
-// ===== Events =====
+// ====== EVENTS ======
 pickMovieBtn.addEventListener("click", getRandomMovie);
-
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const query = searchInput.value.trim();
@@ -121,5 +154,5 @@ searchForm.addEventListener("submit", (e) => {
   }
 });
 
-// ===== Initial Random Movie =====
-getRandomMovie();
+// ====== INITIAL SETUP ======
+fetchGenres().then(() => getRandomMovie());
