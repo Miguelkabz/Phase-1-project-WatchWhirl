@@ -1,101 +1,68 @@
-# 🎥 WatchWhirl
+# WatchWhirl 🎬
 
-A sleek and modern movie discovery app that lets users browse, search, and explore popular films using The Movie Database (TMDB) API.
+WatchWhirl is a movie-discovery web app built with JavaScript and the TMDB API. It gives users a place to explore films and search for titles.
 
----
+## Features
 
-## 📝 Description
+- Search for movies by title.
+- Browse movie listings and discover films.
+- View movie information returned by TMDB.
+- Responsive interface for desktop and mobile screens.
 
-**WatchWhirl** is a responsive web application that allows users to explore trending, popular, and top-rated movies in real-time.
-Users can search for movies, view detailed information, and discover new favorites — all through an intuitive interface powered by the TMDB API.
+> Feature descriptions should match the current implementation. If a feature is unfinished, update this list before presenting the project as complete.
 
----
+## Tech stack
 
-## 🚀 Getting Started
+- JavaScript
+- HTML and CSS
+- TMDB API
+- Vite (development server)
 
-### ✅ Dependencies
-Before running the project, ensure you have the following installed:
-- **Node.js** (version 18 or higher)
-- **npm** or **yarn**
-- A modern **web browser** (Chrome, Firefox, Edge)
+## Run locally
 
----
+### Requirements
+- Node.js 18 or newer
+- npm
 
-### ⚙️ Installation
-
-Follow these steps to run the project locally:
+### Setup
 
 ```bash
-# 1️⃣ Clone this repository
-git clone https://github.com/MiguelKabue/watchwhirl.git
-
-# 2️⃣ Navigate to the project directory
-cd watchwhirl
-
-# 3️⃣ Install dependencies
+git clone https://github.com/Miguelkabz/Phase-1-project-WatchWhirl.git
+cd Phase-1-project-WatchWhirl
 npm install
+```
 
-# 4️⃣ Start the development server
+Create a `.env` file in the project root and add your TMDB API key using the variable name expected by the application. For example, if the code reads `VITE_TMDB_API_KEY`:
+
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key
+```
+
+Then start the development server:
+
+```bash
 npm run dev
 ```
 
-Once it’s running, open your browser and go to:
-👉 **http://localhost:5173**
+Open the local URL printed in the terminal.
 
----
+## API access
 
-### 🔑 TMDB API Setup
+WatchWhirl uses the [TMDB API](https://developer.themoviedb.org/docs). Obtain your own API key from TMDB and keep private credentials out of Git. Vite variables prefixed with `VITE_` are exposed to client-side code, so they should not be treated as secrets.
 
-1. Create a free account at [The Movie Database (TMDB)](https://www.themoviedb.org/).
-2. Generate your personal API key.
-3. In your project directory, locate or create a `.env` file.
-4. Add your key inside like this:
+## Project links
 
-```env
-VITE_TMDB_API_KEY=your_api_key_here
-```
+- Source code: https://github.com/Miguelkabz/Phase-1-project-WatchWhirl
+- TMDB: https://www.themoviedb.org/
 
-5. Save and restart your development server.
+## Author
 
----
+**Miguel Gicheru**  
+GitHub: https://github.com/Miguelkabz
 
-## 💻 Usage
+## Next improvements
 
-- Browse trending and popular movies on the homepage.
-- Use the search bar to find any movie by title.
-- Click a movie card to view detailed info such as description, release date, and ratings.
-- Enjoy a clean, user-friendly, and responsive layout that works on all devices.
-
----
-
-## 🧩 Features
-
-- 🔍 **Search Functionality:** Find any movie instantly.
-- 🎞️ **Dynamic API Data:** Fetch real-time movie details from TMDB.
-- 💡 **Responsive UI:** Optimized for both desktop and mobile screens.
-- ⚡ **Fast Loading:** Lightweight and optimized for performance.
-- 💾 **Environment Variables:** Secure API key setup.
-
----
-
-## 👨‍💻 Author
-
-**Miguel Kabue Gicheru**
-📧 Email: [miguelkabue@gmail.com](mailto:miguelkabue@gmail.com)
-🐙 GitHub: [https://github.com/MiguelKabue](https://github.com/MiguelKabue)
-
----
-
-## 📜 Version History
-
-| Version | Date | Description |
-|----------|------|-------------|
-| 1.0.0 | 2025-10-18 | Initial release of WatchWhirl |
-| 1.1.0 | — | Added new movie filter options |
-| 1.2.0 | — | Improved design and fixed bugs |
-
----
-
-## 🪪 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+- Add screenshots or a short demo GIF.
+- Add a deployed demo link when available.
+- Document any implemented filters, favourites, or movie-detail views.
+- Add clear loading, empty-search, and API-error states where needed.
