@@ -1,5 +1,4 @@
-const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "60b1492de30a836cec7e69c34d6302f4";
+const API_URL = "/api/tmdb";
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 const movieDisplay = document.getElementById("movie-display");
@@ -48,8 +47,8 @@ async function getRandomMovie() {
 
     const page = Math.floor(Math.random() * 10) + 1;
     const response = await axios.get(
-      `${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}`
-    );
+  `${API_URL}?action=popular&page=${page}`
+);
     const movies = response.data.results;
 
     if (movies.length > 0) {
@@ -102,7 +101,9 @@ async function searchMovie(query) {
 let genresMap = {};
 async function fetchGenres() {
   try {
-    const response = await axios.get(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
+    const response = await axios.get(
+  `${API_URL}?action=genres`
+);
     response.data.genres.forEach((genre) => {
       genresMap[genre.id] = genre.name;
     });
