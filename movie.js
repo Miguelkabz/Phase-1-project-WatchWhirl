@@ -71,10 +71,11 @@ async function searchMovie(query) {
     errorMessage.textContent = "";
     resultsList.innerHTML = "";
     searchResults.classList.add("hidden");
+    
+const response = await axios.get(
+`/api/tmdb?action=search&query=${encodeURIComponent(query)}`
+);
 
-    const response = await axios.get(
-      `${API_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
-    );
     const results = response.data.results;
 
     if (results.length === 0) {
